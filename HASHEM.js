@@ -59,7 +59,14 @@ function each(coll, f) {
   //wordLengths("hello its me") // [5,3,2]
   
   function wordLengths(str) {
-      // TODO: your code here 
+  	var len = [];  //===================> that's the final result this array will have the length of each element.
+  	var string = str.split(' '); //=====> I needed to split the string to be an array so i can loop through it.
+
+  	each(string, function(elem, i) { //=> here the each to loop over the STRING array.
+  		len.push(string[i].length) //===> pushing to LEN array the lengths of the elements.
+  	});
+  	
+  	return len;
   }
   
   //=============================================================================
@@ -72,7 +79,13 @@ function each(coll, f) {
   // countOccurrences("hello, world!", "l"); // 3
   
   function countOccurrences(string, character) {
-      // your code is here
+  	var c = 0; //==============================> c is a counter.
+  	each(string, function(element, i) { //=====> sending to the each the string to loop through it.
+  		if (string[i] === character) { //======> check if the character of the string equals to the CHARACTER or no...
+  			c++;					  //=======> .. if yes add 1 to the c.
+  		}
+  	})
+  	return c;						 //========> return the final result which is c the counter. 
   }
   
   //=============================================================================
@@ -84,7 +97,11 @@ function each(coll, f) {
   // wordsLongerThanThree("Hello Mad World") //["Hello", "World"]
   
   function wordsLongerThanThree(str) {
-      // TODO: your code here 
+  	var string = str.split(' '); //==================> I needed to split so i can go through the strings inside (str) element by element otherwise it will counts ("Hello Mad World") as one element not the elements inside, split made it like (['Hello', 'Mad', 'World']).
+
+      return filter(string, function(i, elem) { //===> I used filter to send the condition to the Filter function so it can deals with the condition and return to me the result I want.
+      	return string[elem].length > 3; //===========> this is the condition that goes to the Filter Function.
+      });
   }
   
   //=============================================================================
@@ -98,9 +115,16 @@ function each(coll, f) {
   //repeatString('dog', 2); // => 'dog' + 'dog' => 'dogdog' 
   //repeatString('dog', 3); // => 'dog' + 'dog' + 'dog' => 'dogdogdog'
   
+
+  var arr = []; //========================> to push the strings to.
   function repeatString(str, count) { 
-   // TODO: your code here 
-  } 
+  	if (count === 0) { //=================> check if the count is equal to 0 or no if yes return the (arr).
+  		return arr;
+  	}
+  	
+  	arr.push(str); // ====================> if count not equal to 0 push the string to the arr.
+  	return repeatString(count--); //======> return the function with count -1 to meet the if condition .
+  }
    
   
   //=============================================================================
@@ -122,7 +146,7 @@ function each(coll, f) {
   // pizza.addIngredients("tomato");
   // pizza.addIngredients("meshroom");
   // pizza.addIngredients("meat");
-  // console.log(pizza.displayIngredaints());
+  // console.log(pizza.displayIngredients());
   // pizza.bakePizza();
   // pizza.eatSlice();
   // pizza.eatSlice();
@@ -130,6 +154,42 @@ function each(coll, f) {
   
   // Write your code here .....
   
+function makePizza(crust, size, numberOfSlice, ingredients) {
+	var crust = crust;
+	var size = size;
+	var numberOfSlice = numberOfSlice;
+	var ingredientss = [];
+
+	return {
+		addIngredients: function(ing) {
+			ingredientss.push(ing);
+		},
+
+		displayIngredients:function() {
+			return 'The ingredients are: ' + ingredientss.join(', ');
+		},
+
+		bakePizza: function() {
+			setTimeout(function() {
+				return "Your " + crust +" "+ size +" "+ numberOfSlice + " slice pizza is done";
+			}, 2000);
+		},
+
+		eatSlice: function() {
+			var c = 1;
+			while (c < numberOfSlice) {
+				console.log('hmmmm');
+				c++;
+			};
+		}
+	};
+}
+
+
+
+
+
+
   //=============================================================================
   /*                                  Q6                                      */
   //=============================================================================
@@ -153,9 +213,37 @@ function each(coll, f) {
   */
   
   // Now, to make sure that you are actually reading, make a comment below this and type: Yes I am
-  
+  // Yes I am :P
+
   // Write your code here .....
   
+function ReadingList(read, unRead, toRead, currentRead, readBooks) {
+	var object = {};
+
+	object.read = read;
+	object.unRead = unRead;
+	object.toRead = toRead;
+	object.currentRead = currentRead;
+	object.readBooks = readBooks;
+
+	return object;
+}
+
+function addBook(bookName) {
+	return this.toRead = bookName;
+}
+
+function finishCurrentBook() {
+	this.readBooks.push(this.currentRead);
+	this.read = read++;
+	this.currentRead = this.toRead[0];
+	this.toRead.slice(1);
+	this.unread = unread--;
+}
+
+
+
+
   //=============================================================================
   /*                                  Q7                                       */
   //=============================================================================
@@ -176,6 +264,39 @@ function each(coll, f) {
   
   // Write your code here .....
   
+function makeSafe(initial) {
+	var number = 0;
+	var arr = [];
+
+	return {
+		addItem: function(item, itemSize) {
+			if (itemSize === 'big') {
+				number += 3;
+				if (number > initial) {
+					alert('Can\'t fit');
+				} else {
+					arr.push(item);
+				} if (itemSize === 'medium') {
+					number += 2;
+					if (number > initial) {
+						alert('Can\'t fit');
+				} else {
+					arr.push(item);
+				} if (itemSize === 'small') {
+					number += 1;
+					if (number > initial) {
+						alert('Can\'t fit');
+				} else {
+					arr.push(item);
+				} if (number === initial) {
+				return arr;
+			}
+		}
+	}
+}
+}}}
+
+
   //=============================================================================
   /*                                  Q8                                       */
   //=============================================================================
